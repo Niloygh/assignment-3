@@ -42,6 +42,9 @@ calculateCount()
 
 
 function toggleStyle(id) {
+    
+    
+    
     allFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white')
     interviewFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white')
     rejectedFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white')
@@ -80,6 +83,12 @@ function toggleStyle(id) {
         InterviewJobCount.classList.add('hidden')
         of.classList.add('hidden')
         iconSection.classList.add('hidden')
+
+        if(allCardsSection.children.length == 0){
+            iconSection.classList.remove('hidden')
+        }
+        
+        
     }
     else if (id == 'rejected-filter-btn') {
         allCardsSection.classList.add('hidden')
@@ -232,12 +241,19 @@ mainContainer.addEventListener('click', function (event) {
         const plantName = parentCard.querySelector('.plantName').innerText
 
         
+        // allCardsSection = allCardsSection.filter(item => item.plantName != plantName)
         interviewList = interviewList.filter(item=> item.plantName !== plantName)
         rejectedList = rejectedList.filter(item=> item.plantName !== plantName)
 
         parentCard.remove()
 
         calculateCount()
+
+        if(currentStatus === 'all'){
+            if(allCardsSection.children.length === 0){
+                iconSection.classList.remove('hidden')
+            }
+        }
 
         if(currentStatus === 'interview-filter-btn'){
             renderInterview()
