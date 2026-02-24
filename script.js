@@ -131,7 +131,7 @@ mainContainer.addEventListener('click', function (event) {
 
         // console.log(interviewList)
 
-        renderInterview()
+        // renderInterview()
 
     }
     if (event.target.classList.contains('rejected-btn')) {
