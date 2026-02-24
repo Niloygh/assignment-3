@@ -13,6 +13,9 @@ const interviewFilterBtn = document.getElementById('interview-filter-btn')
 const rejectedFilterBtn = document.getElementById('rejected-filter-btn')
 
 const allJobCount = document.getElementById('all-job-count')
+const InterviewJobCount = document.getElementById('interview-job-count')
+const rejectedJobCount = document.getElementById('rejected-job-count')
+
 
 // const deleteBtn = document.querySelectorAll('.delete-btn')
 // console.log(deleteBtn)
@@ -54,6 +57,12 @@ function toggleStyle(id) {
     if (id == 'interview-filter-btn') {
         allCardsSection.classList.add('hidden')
         filterSection.classList.remove('hidden')
+        InterviewJobCount.classList.remove('hidden')
+        of.classList.remove('hidden')
+
+        rejectedJobCount.classList.add('hidden')
+
+        
         renderInterview()
         if(interviewList.length == 0){
             iconSection.classList.remove('hidden')
@@ -64,11 +73,21 @@ function toggleStyle(id) {
     }
     else if (id == 'all-filter-btn') {
         allCardsSection.classList.remove('hidden')
+
         filterSection.classList.add('hidden')
+        rejectedJobCount.classList.add('hidden')
+        InterviewJobCount.classList.add('hidden')
+        of.classList.add('hidden')
     }
     else if (id == 'rejected-filter-btn') {
         allCardsSection.classList.add('hidden')
         filterSection.classList.remove('hidden')
+        rejectedJobCount.classList.remove('hidden')
+        of.classList.remove('hidden')
+
+        InterviewJobCount.classList.add('hidden')
+
+        
         renderRejected()
         
         if(rejectedList.length == 0){
@@ -121,11 +140,16 @@ mainContainer.addEventListener('click', function (event) {
             interviewList.push(cardInfo)
         }
 
+        
         rejectedList = rejectedList.filter(item=> item.plantName != cardInfo.plantName)
+        
+        InterviewJobCount.innerText = interviewList.length
+        rejectedJobCount.innerText = rejectedList.length
         
         if(currentStatus == 'rejected-filter-btn'){
             renderRejected()
         }
+        
 
         calculateCount()
 
@@ -172,8 +196,17 @@ mainContainer.addEventListener('click', function (event) {
             rejectedList.push(cardInfo)
         }
         
+        // InterviewJobCount.innerText = interviewList.length
+        // rejectedJobCount.innerText = rejectedList.length
 
+        
         interviewList = interviewList.filter(item=> item.plantName != cardInfo.plantName)
+
+        InterviewJobCount.innerText = interviewList.length
+        rejectedJobCount.innerText = rejectedList.length
+        
+        console.log(interviewList.length)
+        
         
 
         if(currentStatus == 'interview-filter-btn'){
@@ -189,6 +222,9 @@ mainContainer.addEventListener('click', function (event) {
     }
 
     if(event.target.classList.contains('delete-btn')){
+
+        console.log(event)
+        
 
         const parentCard = event.target.parentNode.parentNode
         // console.log(parentCard)
@@ -316,17 +352,7 @@ function renderRejected() {
 
         document.querySelectorAll('.delete-btn')
         
-        
-        deleteBtn.addEventListener('click', function(){
-            console.log('esh')
-            
-            // const deleteDiv = rejected.find(item => item.plantName == cardInfo.plantName)
-
-            // if(deleteDiv == true){
-            //     div = ''
-            // }
-            
-        })
+    
         
         
     }
