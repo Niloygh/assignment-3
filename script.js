@@ -33,7 +33,10 @@ function calculateCount() {
     total.innerText = allCardsSection.children.length
     allJobCount.innerText = allCardsSection.children.length
     interviewCount.innerText = interviewList.length
+    InterviewJobCount.innerText = interviewList.length
+
     rejectedCount.innerText = rejectedList.length
+    rejectedJobCount.innerText = rejectedList.length
 }
 calculateCount()
 
@@ -62,14 +65,12 @@ function toggleStyle(id) {
 
         rejectedJobCount.classList.add('hidden')
 
-        
         renderInterview()
+        
         if(interviewList.length == 0){
             iconSection.classList.remove('hidden')
         }
-        else{
-            iconSection.classList.add('hidden')
-        }
+        
     }
     else if (id == 'all-filter-btn') {
         allCardsSection.classList.remove('hidden')
@@ -78,6 +79,7 @@ function toggleStyle(id) {
         rejectedJobCount.classList.add('hidden')
         InterviewJobCount.classList.add('hidden')
         of.classList.add('hidden')
+        iconSection.classList.add('hidden')
     }
     else if (id == 'rejected-filter-btn') {
         allCardsSection.classList.add('hidden')
@@ -93,9 +95,7 @@ function toggleStyle(id) {
         if(rejectedList.length == 0){
             iconSection.classList.remove('hidden')
         }
-        else{
-            iconSection.classList.add('hidden')
-        }
+        
     }
 
 }
@@ -143,8 +143,8 @@ mainContainer.addEventListener('click', function (event) {
         
         rejectedList = rejectedList.filter(item=> item.plantName != cardInfo.plantName)
         
-        InterviewJobCount.innerText = interviewList.length
-        rejectedJobCount.innerText = rejectedList.length
+        // InterviewJobCount.innerText = interviewList.length
+        // rejectedJobCount.innerText = rejectedList.length
         
         if(currentStatus == 'rejected-filter-btn'){
             renderRejected()
@@ -202,8 +202,8 @@ mainContainer.addEventListener('click', function (event) {
         
         interviewList = interviewList.filter(item=> item.plantName != cardInfo.plantName)
 
-        InterviewJobCount.innerText = interviewList.length
-        rejectedJobCount.innerText = rejectedList.length
+        // InterviewJobCount.innerText = interviewList.length
+        // rejectedJobCount.innerText = rejectedList.length
         
         console.log(interviewList.length)
         
@@ -223,7 +223,7 @@ mainContainer.addEventListener('click', function (event) {
 
     if(event.target.classList.contains('delete-btn')){
 
-        console.log(event)
+        // console.log(event)
         
 
         const parentCard = event.target.parentNode.parentNode
@@ -231,8 +231,8 @@ mainContainer.addEventListener('click', function (event) {
         
         const plantName = parentCard.querySelector('.plantName').innerText
 
+        
         interviewList = interviewList.filter(item=> item.plantName !== plantName)
-
         rejectedList = rejectedList.filter(item=> item.plantName !== plantName)
 
         parentCard.remove()
