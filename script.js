@@ -20,7 +20,7 @@ const rejectedJobCount = document.getElementById('rejected-job-count')
 // const deleteBtn = document.querySelectorAll('.delete-btn')
 // console.log(deleteBtn)
 
-const iconSection = document.getElementById('icon') 
+const iconSection = document.getElementById('icon')
 
 const mainContainer = document.querySelector('main')
 const filterSection = document.getElementById('filter-section')
@@ -42,9 +42,9 @@ calculateCount()
 
 
 function toggleStyle(id) {
-    
-    
-    
+
+
+
     allFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white')
     interviewFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white')
     rejectedFilterBtn.classList.remove('bg-[#3B82F6]', 'text-white')
@@ -55,8 +55,8 @@ function toggleStyle(id) {
 
     const selected = document.getElementById(id)
     currentStatus = id;
-    
-    
+
+
 
     selected.classList.add('bg-[#3B82F6]', 'text-white')
 
@@ -69,11 +69,11 @@ function toggleStyle(id) {
         rejectedJobCount.classList.add('hidden')
 
         renderInterview()
-        
-        if(interviewList.length == 0){
+
+        if (interviewList.length == 0) {
             iconSection.classList.remove('hidden')
         }
-        
+
     }
     else if (id == 'all-filter-btn') {
         allCardsSection.classList.remove('hidden')
@@ -84,11 +84,11 @@ function toggleStyle(id) {
         of.classList.add('hidden')
         iconSection.classList.add('hidden')
 
-        if(allCardsSection.children.length == 0){
+        if (allCardsSection.children.length == 0) {
             iconSection.classList.remove('hidden')
         }
-        
-        
+
+
     }
     else if (id == 'rejected-filter-btn') {
         allCardsSection.classList.add('hidden')
@@ -98,13 +98,13 @@ function toggleStyle(id) {
 
         InterviewJobCount.classList.add('hidden')
 
-        
+
         renderRejected()
-        
-        if(rejectedList.length == 0){
+
+        if (rejectedList.length == 0) {
             iconSection.classList.remove('hidden')
         }
-        
+
     }
 
 }
@@ -149,16 +149,16 @@ mainContainer.addEventListener('click', function (event) {
             interviewList.push(cardInfo)
         }
 
-        
-        rejectedList = rejectedList.filter(item=> item.plantName != cardInfo.plantName)
-        
+
+        rejectedList = rejectedList.filter(item => item.plantName != cardInfo.plantName)
+
         // InterviewJobCount.innerText = interviewList.length
         // rejectedJobCount.innerText = rejectedList.length
-        
-        if(currentStatus == 'rejected-filter-btn'){
+
+        if (currentStatus == 'rejected-filter-btn') {
             renderRejected()
         }
-        
+
 
         calculateCount()
 
@@ -178,7 +178,8 @@ mainContainer.addEventListener('click', function (event) {
         const status = parentNode.querySelector('.status').innerText
         const notes = parentNode.querySelector('.notes').innerText
 
-        // console.log(location, time, salary)
+        console.log(time, salary)
+        // 
 
         parentNode.querySelector('.status').innerText = 'Rejected'
 
@@ -204,21 +205,21 @@ mainContainer.addEventListener('click', function (event) {
         if (!plantExist) {
             rejectedList.push(cardInfo)
         }
-        
-        // InterviewJobCount.innerText = interviewList.length
-        // rejectedJobCount.innerText = rejectedList.length
-
-        
-        interviewList = interviewList.filter(item=> item.plantName != cardInfo.plantName)
 
         // InterviewJobCount.innerText = interviewList.length
         // rejectedJobCount.innerText = rejectedList.length
-        
+
+
+        interviewList = interviewList.filter(item => item.plantName != cardInfo.plantName)
+
+        // InterviewJobCount.innerText = interviewList.length
+        // rejectedJobCount.innerText = rejectedList.length
+
         console.log(interviewList.length)
-        
-        
 
-        if(currentStatus == 'interview-filter-btn'){
+
+
+        if (currentStatus == 'interview-filter-btn') {
             renderInterview()
         }
 
@@ -230,47 +231,47 @@ mainContainer.addEventListener('click', function (event) {
 
     }
 
-    if(event.target.classList.contains('delete-btn')){
+    if (event.target.classList.contains('delete-btn')) {
 
         // console.log(event)
-        
+
 
         const parentCard = event.target.parentNode.parentNode
         // console.log(parentCard)
-        
+
         const plantName = parentCard.querySelector('.plantName').innerText
 
-        
+
         // allCardsSection = allCardsSection.filter(item => item.plantName != plantName)
-        interviewList = interviewList.filter(item=> item.plantName !== plantName)
-        rejectedList = rejectedList.filter(item=> item.plantName !== plantName)
+        interviewList = interviewList.filter(item => item.plantName !== plantName)
+        rejectedList = rejectedList.filter(item => item.plantName !== plantName)
 
         parentCard.remove()
 
         calculateCount()
 
-        if(currentStatus === 'all'){
-            if(allCardsSection.children.length === 0){
+        if (currentStatus === 'all') {
+            if (allCardsSection.children.length === 0) {
                 iconSection.classList.remove('hidden')
             }
         }
 
-        if(currentStatus === 'interview-filter-btn'){
+        if (currentStatus === 'interview-filter-btn') {
             renderInterview()
-            if(interviewList.length === 0){
+            if (interviewList.length === 0) {
                 iconSection.classList.remove('hidden')
             }
         }
 
-        if(currentStatus == 'rejected-filter-btn'){
+        if (currentStatus == 'rejected-filter-btn') {
             renderRejected()
-            if(rejectedList.length === 0){
+            if (rejectedList.length === 0) {
                 iconSection.classList.remove('hidden')
             }
         }
-   
+
     }
-    
+
 })
 
 function renderInterview() {
@@ -289,8 +290,8 @@ function renderInterview() {
                     </div>
                     <div class="flex gap-2 my-5">
                         <span class="text-[#64748B] location">${interview.location}</span>
-                        <span class="text-[#64748B] time"><span class="mr-2">•</span>${interview.time}</span>
-                        <span class=" text-[#64748B] salary"><span class="mr-2">•</span>${interview.salary}</span>
+                        <span class="text-[#64748B] "><span class="mr-2">•</span> <span class="time">${interview.time}</span></span>
+                        <span class=" text-[#64748B] "><span class="mr-2">•</span><span class="salary">${interview.salary}</span></span>
                     </div>
                     <div class="flex">
                         <p class="status px-5 py-2 bg-[#EEF4FF] ">${interview.status}</p>
@@ -316,7 +317,7 @@ function renderInterview() {
 
         filterSection.appendChild(div)
 
-        
+
 
 
     }
@@ -324,6 +325,11 @@ function renderInterview() {
 
 function renderRejected() {
     filterSection.innerHTML = ''
+
+    if (rejectedList.length == 0) {
+        iconSection.classList.remove('hidden')
+        return;
+    }
 
     for (let rejected of rejectedList) {
         // console.log(interview)
@@ -338,8 +344,8 @@ function renderRejected() {
                     </div>
                     <div class="flex gap-2 my-5">
                         <span class="text-[#64748B] location">${rejected.location}</span>
-                        <span class="text-[#64748B] time"><span class="mr-2">•</span>${rejected.time}</span>
-                        <span class=" text-[#64748B] salary"><span class="mr-2">•</span>${rejected.salary}</span>
+                        <span class="text-[#64748B] "><span class="mr-2">•</span> <span class="time">${rejected.time}</span></span>
+                        <span class=" text-[#64748B] "><span class="mr-2">•</span><span class="salary">${rejected.salary}</span></span>
                     </div>
                     <div class="flex">
                         <p class="status px-5 py-2 bg-[#EEF4FF] ">${rejected.status}</p>
@@ -364,13 +370,13 @@ function renderRejected() {
         `
 
         filterSection.appendChild(div)
-        
+
 
         document.querySelectorAll('.delete-btn')
-        
-    
-        
-        
+
+
+
+
     }
 }
 
